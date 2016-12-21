@@ -2,7 +2,7 @@
 require 'persisted_hash'
 class PersistedHash::CLI < Thor
 
-  desc "global_patch_test"
+  desc "global_patch_test", "global_patch_test"
   def global_patch_test
     Hash.include PersistedHash
     db = {}.persisted "testdb.yaml"
@@ -11,14 +11,22 @@ class PersistedHash::CLI < Thor
     puts "here is entire hash: #{db.data}"
   end
 
-  desc "refinement_test"
+  desc "refinement_test", "refinement_test"
   def refinement_test
-    using PersistedHash
+    Tester.refinement_test
+  end
+
+end
+
+module Tester
+  using PersistedHash
+  def self.refinement_test
     db = {}.persisted "testdb.yaml"
     db.set(:foo, :bar, 1)
     puts "set nested key: #{db.get(:foo, :bar)}"
     puts "here is entire hash: #{db.data}"
   end
-
 end
+
 PersistedHash::CLI.start ARGV
+
