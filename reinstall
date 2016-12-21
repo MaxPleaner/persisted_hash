@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+Dir.glob("./*.gem").each { |path| `rm #{path}` }
+puts `gem uninstall -x persisted_hash`
+puts `gem build persisted_hash.gemspec`
+Dir.glob("./*.gem").each { |path| puts `gem install -f #{path}` }
+puts `persisted_hash refinement_test`
+puts `persisted_hash global_patch_test`
