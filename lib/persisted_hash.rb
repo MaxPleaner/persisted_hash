@@ -1,7 +1,3 @@
-require 'colored'
-require 'pry'
-require 'active_support/all'
-require 'thor'
 require 'gemmy'
 
 module PersistedHash
