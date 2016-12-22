@@ -4,12 +4,12 @@ module PersistedHash
 
   using Gemmy.patch("hash/i/persisted")
 
-  def self.persisted_hash(hash, *args)
+  def self.new(hash, *args)
     hash.persisted *args
   end
 
   def persisted(*args)
-    PersistedHash.persisted_hash self, *args
+    PersistedHash.new self, *args
   end
 
   refine Hash do
